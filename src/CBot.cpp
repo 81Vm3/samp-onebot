@@ -15,7 +15,7 @@ void CBot::registerEvents() {
     using twobot::ApiSet;
 
     botInstance->onEvent<ConnectEvent>([this](const ConnectEvent& msg) {
-        logprintf("Connected to websocket.");
+        logprintf("Bot connected.");
         CCallbackManager::OnBotConnect();
     });
 
@@ -120,6 +120,7 @@ bool CBot::connect() {
                    config.getToken()});
         registerEvents();
 
+        logprintf("Started websocket server!");
         botThread->enqueue([&config, this] { botInstance->start(); });
         return true;
     }
