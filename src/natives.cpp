@@ -100,13 +100,16 @@ cell AMX_NATIVE_CALL OB_GetJsonString(AMX* amx, cell* params) {
 
     try {
         std::string out;
-        j->at(szPath).get_to(
-            out);  // Access JSON by path and get the string value
+        j->at(szPath).get_to(out);  // Access JSON by path and get the string value
 
-        char* p = new char[out.size() * 3];
-        utf8_to_gb(out.c_str(), p, out.size() * 3);
-        amx_SetString(out_addr, p, 0, 0, params[4]);
-        delete p;
+        if (out.size()) {
+            char* p = new char[out.size() * 3];
+            utf8_to_gb(out.c_str(), p, out.size() * 3);
+            amx_SetString(out_addr, p, 0, 0, params[4]);
+            delete p;
+        } else {
+            amx_SetString(out_addr, "", 0, 0, params[4]);
+        }
 
     } catch (const json::out_of_range& e) {
         // Handle missing keys in JSON
