@@ -2,6 +2,8 @@
 
 基于TwoBotFramework在C++中编写的samp插件，允许开发者在pawn中使用OneBot接口
 
+![preview.png](Preview)
+
 ## 原理
 
 一个OneBot机器人接受和传递消息的流程如下：
