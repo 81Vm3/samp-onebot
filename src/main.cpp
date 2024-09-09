@@ -25,6 +25,8 @@ PLUGIN_EXPORT bool PLUGIN_CALL Load(void **ppData) {
 }
 
 PLUGIN_EXPORT void PLUGIN_CALL Unload() {
+    CPluginApp &a = CPluginApp::getInstance();
+    a.getBot().disconnect();
     logprintf(" * samp-onebot was unloaded.");
 }
 
