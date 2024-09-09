@@ -1,6 +1,6 @@
 #include <samp-onebot>
 
-my_game_group[] = "775660140";
+new my_game_group[] = "775660140";
 
 public OB_OnBotConnect() {
     printf("脚本成功加载 - 群消息互通");
