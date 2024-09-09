@@ -2,7 +2,7 @@
 
 基于TwoBotFramework在C++中编写的samp插件，允许开发者在pawn中使用OneBot接口
 
-![preview.png](Preview)
+![preview.png](preview.png)
 
 ## 原理
 
