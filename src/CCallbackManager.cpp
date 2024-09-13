@@ -47,7 +47,7 @@ void CCallbackManager::OnGroupMessage(uint64_t group, uint64_t user_id,
 
             std::ostringstream ss;
 
-            amx_Push(it, reinterpret_cast<cell>(sender_info));
+            amx_Push(it, (cell)(intptr_t)(sender_info));
             amx_PushString(it, &addr, NULL, raw, NULL, NULL);
 
             ss << user_id;
@@ -76,7 +76,7 @@ void CCallbackManager::OnPrivateMessage(uint64_t user_id, const char *raw,
 
             std::ostringstream ss;
 
-            amx_Push(it, reinterpret_cast<cell>(sender_info));
+            amx_Push(it, (cell)(intptr_t)(sender_info));
             amx_Push(it, type);
             amx_PushString(it, &addr, NULL, raw, NULL, NULL);
 

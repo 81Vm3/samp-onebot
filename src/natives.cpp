@@ -63,7 +63,7 @@ cell AMX_NATIVE_CALL OB_GetJson(AMX* amx, cell* params) {
 
         json* j = new json(json::parse(p));  // Parse the raw string as JSON
         delete p;
-        return reinterpret_cast<cell>(j);
+        return (cell)(intptr_t)(j);
     } catch (const json::parse_error& e) {
         // Handle JSON parsing errors
         logprintf("JSON Parsing Error: %s", e.what());
