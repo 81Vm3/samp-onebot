@@ -4,6 +4,11 @@
 
 ![preview.png](preview.png)
 
+`问: Onebot是什么?`
+
+- 统一的聊天机器人应用接口标准
+- 简洁、通用、可扩展，只需使用一套标准即可为各种平台编写聊天机器人
+
 ## 原理
 
 一个OneBot机器人接受和传递消息的流程如下：
@@ -12,22 +17,14 @@ OneBot SDK -> OneBot实现 -> 社交App平台 (如QQ，微信，Telegram)
 
 在TwoBotFramework C++ SDK的基础上，本插件包装了TwoBot作为pawn语言下的OneBot 的的SDK，允许你简单地在pawn中编写自己的机器人代码
 
-## 配置文件 - samp-onebot.json
-```json
-{
-    "host": "127.0.0.1",
-    "ws_port": 8080,
-    "api_port": 8081,
-    "thread_count": 6,
-    "token": ""
-}
-```
-#### 说明:
-1. host - 上游Onebot API的地址
-2. ws_port - Websocket服务器端口
-3. api_port - 上游Onebot API的端口
-4. thread_count - 消息线程池的最大线程数量
-5. token - API的密码，无则留空
+![image](tutorials/network.jpg)
+
+下面是搭建几种 OneBot实现 的教程
+
+[Lagrange - 基于纯C#的NTQQ协议实现，支持Onebot](tutorials/lagrange.md)
+
+[Shamrock - 基于 Xposed 实现 OneBot 标准的 QQ 机器人框架](tutorials/shamrock.md)
+
 ## 示例代码 - 在游戏内显示群消息
 
 ```pwn
@@ -56,6 +53,25 @@ public OB_OnGroupMessage(group[], user_id[], raw[], JsonObject:sender_info) {
 }
 
 ```
+更多示例代码请看[这里](examples)
+
+
+## 配置文件 - samp-onebot.json
+```json
+{
+    "host": "127.0.0.1",
+    "ws_port": 8080,
+    "api_port": 8081,
+    "thread_count": 6,
+    "token": ""
+}
+```
+#### 说明:
+1. host - 上游Onebot API的地址
+2. ws_port - Websocket服务器端口
+3. api_port - 上游Onebot API的端口
+4. thread_count - 消息线程池的最大线程数量
+5. token - API的密码，无则留空
 
 ## 编译
 
