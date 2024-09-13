@@ -12,8 +12,11 @@ if(UNIX AND NOT APPLE)
     # flags
     set(FLAGS "-m32 -fPIC -O2 -fno-stack-protector -Wall -Wno-attributes -Wno-strict-aliasing -Wno-sequence-point")
     set(CMAKE_C_FLAGS ${FLAGS})
+    set(CMAKE_CXX_FLAGS ${FLAGS})
     set(CMAKE_SHARED_LINKER_FLAGS "-fshort-wchar -shared -static-libgcc -static-libstdc++")
-
+    
+    link_directories(/usr/lib/i386-linux-gnu)
+    set(CMAKE_LIBRARY_PATH /usr/lib/i386-linux-gnu)
 endif()
 
 if(WIN32)
@@ -45,8 +48,10 @@ file(GLOB_RECURSE SRC_FILES
     "${PROJECT_SOURCE_DIR}/src/*.hpp"
 )
 
+
 add_subdirectory(lib)
 add_library(${CMAKE_PROJECT_NAME} SHARED ${SRC_FILES} ${PROJECT_SOURCE_DIR}/src/exports.def)
+set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES COMPILE_FLAGS "-m32" LINK_FLAGS "-m32")
 
 target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC ${PLUGIN_SDK_DIR})
 
